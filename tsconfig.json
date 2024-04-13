@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    // "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/components/ModalHandler.jsx",
+    "src/app/components/ModalHandler.tsx.backup",
+    "src/app/[slug]/page.jsx.backup.last",
+    "src/app/[slug]/page.tsx.backup",
+    "src/app/[slug]/page-revamp.backup",
+    "src/app/[slug]/page.tsx.bachup",
+    "src/app/mentions-legales/page.jsx",
+    "src/app/components/ImagePlaceHolder.tsx.backup",
+    "src/app/components/NavBar.jsx",
+    "src/app/a-propos/page.jsx",
+    "src/app/le-livre/page.jsx",
+    "src/app/providers.tsx",
+    "src/app/components/ImagePlaceHolder.jsx",
+    "src/app/layout.jsx",
+    "src/app/page.jsx"
+  ],
+  "exclude": ["node_modules"]
+}
