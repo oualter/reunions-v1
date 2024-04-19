@@ -2,7 +2,7 @@ import { MicrofictionsContextProvider } from './contexts/microfictions.context'
 import ImagePlaceHolder from './components/ImagePlaceHolder'
 import PinsList from './components/PinsList'
 import Modal from './components/Modal'
-import YearsSlider from './components/YearsSlider'
+import YearsSlider from './components/YearsSlider.jsx'
 import { GetMicroFictions } from '../lib/microfictions'
 import Confettis from './components/Confettis'
 

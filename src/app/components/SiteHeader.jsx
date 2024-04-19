@@ -17,9 +17,9 @@ export default function SiteHeader() {
     <>
       {!isHomepage ? (
         <Link href="/" className="grow sm:basis-2/3">
-          <div className="uppercase whitespace-nowrap sm:text-6xl text-base">
+          <div className="uppercase whitespace-nowrap sm:text-6xl text-2xl">
             Places de la Réunion
-            <div className="text-3xl">Heureusement que le ginkgo biloba</div>
+            <div className="sm:text-3xl text-sm">Heureusement que le ginkgo biloba</div>
           </div>
         </Link>
       ) : (

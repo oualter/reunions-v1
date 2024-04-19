@@ -42,7 +42,8 @@
     "src/app/providers.tsx",
     "src/app/components/ImagePlaceHolder.jsx",
     "src/app/layout.jsx",
-    "src/app/page.jsx"
+    "src/app/page.jsx",
+    "src/app/components/YearsSlider.jsx"
   ],
   "exclude": ["node_modules"]
 }

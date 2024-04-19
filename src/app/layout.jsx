@@ -1,9 +1,7 @@
 import './globals.css'
-import { NUIProviders } from './providers'
 import NavBar from './components/NavBar.jsx'
 import FooterBar from './components/FooterBar'
 import SiteHeader from './components/SiteHeader'
-// import GetChapitres from './components/GetChapitres'
 
 export const metadata = {
   title: {
@@ -19,16 +17,14 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       {/* <body className="container mx-auto min-h-screen flex flex-col pb-2"> */}
       <body className="container mx-auto pb-2">
-        <NUIProviders>
-          <header className="sticky top-0 w-full sm:py-3 py-1 sm:px-9 px-2 shrink">
-            <div className="sm:flex sm:justify-stretch ">
-              <SiteHeader />
-              <NavBar />
-            </div>
-          </header>
-          <main className="grow overflow-hidden ">{children}</main>
-          <FooterBar />
-        </NUIProviders>
+        <header className="sticky top-0 w-full sm:py-3 py-1 sm:px-9 px-2 shrink">
+          <div className="sm:flex sm:justify-stretch ">
+            <SiteHeader />
+            <NavBar />
+          </div>
+        </header>
+        <main className="grow overflow-hidden ">{children}</main>
+        <FooterBar />
       </body>
     </html>
   )
