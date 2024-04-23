@@ -1,5 +1,11 @@
 'use client'
 import { useContext, useRef } from 'react'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from './ui/tooltip'
 import microfictionsContext from '../contexts/microfictions.context'
 
 const Pin = (props) => {
@@ -35,23 +41,32 @@ const Pin = (props) => {
   }
 
   return (
-    <div
-      // className="pin"
-      ref={pinClassName}
-      className={updatedClassName}
-      style={{
-        width: '10px',
-        height: '10px',
-        top: `${coordY}%`,
-        left: `${coordX}%`,
-      }}
-      datadate={Date}
-      datahour={Heure}
-      datatext={Texte_mf}
-      onClick={(e, value = { GingkoBiloba }) => {
-        openModal(e, value)
-      }}
-    ></div>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            // className="pin"
+            ref={pinClassName}
+            className={updatedClassName}
+            style={{
+              width: '10px',
+              height: '10px',
+              top: `${coordY}%`,
+              left: `${coordX}%`,
+            }}
+            datadate={Date}
+            datahour={Heure}
+            datatext={Texte_mf}
+            onClick={(e, value = { GingkoBiloba }) => {
+              openModal(e, value)
+            }}
+          ></div>
+        </TooltipTrigger>
+        <TooltipContent className="data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade text-violet11 select-none rounded-[4px] bg-white px-[15px] py-[10px] text-[15px] leading-none shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] will-change-[transform,opacity]">
+          <p>{pinYear}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
 }
 export default Pin
