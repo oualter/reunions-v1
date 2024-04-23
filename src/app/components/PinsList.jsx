@@ -6,9 +6,10 @@ import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 
 const PinsList = (props) => {
-  const { pins, unselectedMicrofictions, reselectedMicrofictions } =
+  const animContainer = useRef(true)
+  const { pins, unselectedMicrofictions, dateFilter } =
     useContext(microfictionsContext)
-  // console.log('context => ', useContext(microfictionsContext))
+
   const zeroOneArray1 = Math.round(Math.random())
   const zeroOneArray2 = Math.round(Math.random())
   const rangeX = Math.random() * 15
@@ -27,22 +28,6 @@ const PinsList = (props) => {
     return acc
   }, {})
 
-  let reselectedPindReducedDate;
-  if(reselectedMicrofictions.length > 0){
-  reselectedPindReducedDate = reselectedMicrofictions.reduce((acc, curr) => {
-    if (!acc[curr.Date]) {
-      acc[curr.Date] = []
-    }
-    acc[curr.Date].push(curr.Texte_microfiction)
-    if (acc[curr.Date].length > 0) {
-      acc[curr.Date].push(['<hr/>'])
-    }
-    return acc
-  }, {})
-  }
-
-  const animContainer = useRef()
-
   useGSAP(
     () => {
       gsap.from('.pin', {
@@ -57,16 +42,16 @@ const PinsList = (props) => {
         stagger: {
           // amount:20,
           each: 0.08,
-          from:"start",
-          ease:"power1.in"
-        }
+          from: 'start',
+          ease: 'power1.in',
+        },
       })
     },
     { scope: animContainer }
   )
 
   useEffect(() => {
-    const pinRemoveTL = gsap.timeline()     
+    const pinRemoveTL = gsap.timeline()
     pinRemoveTL.to('.toRemove', {
       scale: 5,
       duration: 0.3,
@@ -82,83 +67,53 @@ const PinsList = (props) => {
       ease: 'expo',
       delay: 0.4,
     })
+  // }, [pins])
   }, [unselectedMicrofictions])
 
   useEffect(() => {
     const pinDisplayTL = gsap.timeline()
     pinDisplayTL.to('.toDisplay', {
-      opacity:1,
+      opacity: 1,
       scale: 5,
-      duration: 0.3,
+      duration: 0.2,
       ease: 'expo',
-      delay: 0.2
+      delay: 0.1,
+      stagger: {
+        each: 0.08,
+      },
     })
     pinDisplayTL.to('.toDisplay', {
       opacity: 1,
       scale: 1,
-      duration: 0.1,
+      duration: 0.2,
       ease: 'expo',
-      delay: 0.4,
+      delay: 0.6,
     })
-  }, [reselectedMicrofictions])
+  }, [pins])
 
   return (
     <div ref={animContainer}>
-      {pins.map((elt) => {
-        const { id, pingenerator, Date } = elt
-        if (pindReducedDate[Date]) {
-          if (!pingenerator) return
-          let Texte_mf = pindReducedDate[Date]
-          Texte_mf.pop()
-          Texte_mf = Texte_mf.join('')
-          const posX = pingenerator ? pingenerator.split(',')[0] : ''
-          const posY = pingenerator ? pingenerator.split(',')[1] : ''
-          return (
-            <Pin
-              key={posX * posX * id}
-              coordX={posX}
-              coordY={posY}
-              Texte_mf={Texte_mf}
-              {...elt}
-            />
-          )
-        }
-      })}
-      {unselectedMicrofictions &&
-        unselectedMicrofictions.map((elt) => {
-          const { id, pingenerator } = elt
-          if (!pingenerator) return
-          const posX = pingenerator ? pingenerator.split(',')[0] : ''
-          const posY = pingenerator ? pingenerator.split(',')[1] : ''
-          return (
-            <Pin
-              key={posX * posX * id}
-              coordX={posX}
-              coordY={posY}
-              category="toRemove"
-              {...elt}
-            />
-          )
-        })}
-      {reselectedMicrofictions &&
-        reselectedMicrofictions.map((elt) => {
+      {pins &&
+        pins.map((elt) => {
           const { id, pingenerator, Date } = elt
-          if (!pingenerator) return
-          let Texte_mf = reselectedPindReducedDate[Date]
-          Texte_mf.pop()
-          Texte_mf = Texte_mf.join('')
-          const posX = pingenerator ? pingenerator.split(',')[0] : ''
-          const posY = pingenerator ? pingenerator.split(',')[1] : ''
-          return (
-            <Pin
-              key={posX * posX * id}
-              coordX={posX}
-              coordY={posY}
-              Texte_mf={Texte_mf}
-              category="toDisplay"
-              {...elt}
-            />
-          )
+          if (pindReducedDate[Date]) {
+            if (!pingenerator) return
+            let Texte_mf = pindReducedDate[Date]
+            Texte_mf.pop()
+            Texte_mf = Texte_mf.join('')
+            const posX = pingenerator ? pingenerator.split(',')[0] : ''
+            const posY = pingenerator ? pingenerator.split(',')[1] : ''
+            return (
+              <Pin
+                key={posX * posX * id}
+                coordX={posX}
+                coordY={posY}
+                Texte_mf={Texte_mf}
+                dateFilter={dateFilter}
+                {...elt}
+              />
+            )
+          }
         })}
     </div>
   )

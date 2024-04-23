@@ -53,7 +53,7 @@ const Slider = React.forwardRef(({ className, ...props }, ref) => {
       <SliderPrimitive.Thumb id="sliderThumb">
         <div style={{ transform: `translateX(${offset}px)` }}>
           <div
-            className="absolute ease-in-out duration-150 transition group-active:opacity-100 group-active:-translate-y-12 -translate-y-6 -translate-x-1/2 left-1/2 px-5 py-2 bg-black text-center rounded-full text-white whitespace-nowrap text-xs font-bold"
+            className="absolute ease-in-out duration-150 transition group-active:opacity-100 -translate-y-1 -translate-x-[5rem] px-5 py-2 bg-white text-center rounded-full text-black whitespace-nowrap text-xs font-bold shadow-md"
             ref={ThumbRef}
           >
             {value}

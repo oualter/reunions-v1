@@ -18,6 +18,7 @@ const MicrofictionsContextProvider = (props) => {
   const [selectedMicrofictions, setSelectedMicrofictions] = useState([])
   const [unselectedMicrofictions, setUnselectedMicrofictions] = useState([])
   const [reselectedMicrofictions, setReselectedMicrofictions] = useState([])
+  const [dateFilter, setDateFilter] = useState(null)
 
   const mfArray = props.value.microfictionsFiltered
     ? props.value.microfictionsFiltered
@@ -36,6 +37,8 @@ const MicrofictionsContextProvider = (props) => {
 
   // filtre les épingles inférieures aux dates sélectionnées
   const handleDisplayPins = (event) => {
+    console.log('handleDisplayPins event => ', event)
+    setDateFilter(event)
     const filteredMF = mfArray.filter((elt) => {
       let eltDate = parseInt(elt.Date.split('/')[2])
       return eltDate < parseInt(event) + 1
@@ -46,18 +49,6 @@ const MicrofictionsContextProvider = (props) => {
     // filtre les microfictions non filtrées pour affecter une animation sur les épingles qui disparaissent en utilisant le slider
     const nonFilteredMF = mfArray.filter((elt) => !filteredMF.includes(elt))
 
-    // filtres les microfictions qui doivent réapparaitre pour affecter un effet d'animation aux épingles qui réapparaissent
-    if (
-      counterforMF > 1 &&
-      filteredMFArchive[counterforMF - 1].length >
-        filteredMFArchive[counterforMF - 2].length
-    ) {
-      // console.log("on peut refiltrer")
-      const filteredMFBack = filteredMFArchive[counterforMF - 1].filter(
-        (elt) => !filteredMFArchive[counterforMF - 2].includes(elt)
-      )
-      setReselectedMicrofictions(filteredMFBack)
-    }
     setUnselectedMicrofictions(nonFilteredMF)
     const temporizer = setTimeout(() => {
       setSelectedMicrofictions(filteredMF)
@@ -82,6 +73,7 @@ const MicrofictionsContextProvider = (props) => {
         selectedMicrofictions: mfArray,
         unselectedMicrofictions,
         reselectedMicrofictions,
+        dateFilter,
       }}
     >
       <>{props.children}</>
