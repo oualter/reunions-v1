@@ -57,7 +57,7 @@ module.exports = {
         // replace remote patterns when production
         // patterns for production just below
         protocol: 'https',
-        hostname: 'strapi-bci8.onrender.com',
+        hostname: 'strapi-reunion-pingenerator.onrender.com',
         // patterns for local dev just below
         // protocol: 'http',
         // hostname: '127.0.0.1',
