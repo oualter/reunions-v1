@@ -10,7 +10,7 @@ export default async function apropos() {
       const { Titre, Contenu } = body.data.attributes
 
       return (
-        <article className="generic-content lg:max-w-[700px] mx-auto my-6">
+        <article className="generic-content lg:max-w-[700px] min-h-screen mx-auto my-6">
           <h1 className="text-5xl mb-4">{Titre}</h1>
           <BlockRendererClient content={Contenu} />
         </article>
