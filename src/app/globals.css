@@ -245,7 +245,7 @@ textarea {
   border-radius: 50%;
   z-index: 100;
   cursor: pointer;
-  transition: scale 0.5s ease-in;
+  transition: scale 0.2s ease-in;
 }
 .pin:hover {
   scale: 3 !important;

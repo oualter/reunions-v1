@@ -41,7 +41,7 @@ const Pin = (props) => {
   }
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={200}>
       <Tooltip>
         <TooltipTrigger asChild>
           <div
