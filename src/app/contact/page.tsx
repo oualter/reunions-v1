@@ -1,11 +1,12 @@
 import Contact from './../components/ContactForm'
-import HeadingOne from './../components/HeadingOne'
-
+export const metadata = {
+  title: 'Contact',
+}
 export default function contact() {
   return (
     // <article className="generic-content lg:max-w-[700px] min-h-screen mx-auto my-6">
-    <article className="generic-content lg:max-w-[600px] min-h-screen mx-auto my-6">
-      <HeadingOne texte="Contact" />
+    <article className="generic-content lg:max-w-[600px] min-h-screen mx-auto my-6 px-2 lg:px-0">
+      <h1 className="text-3xl lg:text-5xl mb-4">Contact</h1>
       <Contact />
     </article>
   )

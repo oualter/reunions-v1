@@ -4,8 +4,6 @@ import microfictionsContext from '../contexts/microfictions.context'
 import { Slider } from './ui/slider'
 
 const YearsSlider = ({ className, ...props }) => {
-
-
   const yearsContext = useContext(microfictionsContext)
   const { defaultpins, handleDisplayPins, selectedMicrofictions } = yearsContext
   const yearsArr = []
@@ -29,6 +27,7 @@ const YearsSlider = ({ className, ...props }) => {
   if (!yearsArrToSlider) return false
 
   const yearsArrToSliderInt = Array.from(yearsArrToSlider, (x) => parseInt(x))
+  // const minYear = Math.min(...yearsArrToSliderInt)
   const minYear =
     Math.min(...yearsArrToSliderInt) < 1970
       ? 1970

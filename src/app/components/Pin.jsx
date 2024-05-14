@@ -17,6 +17,7 @@ const Pin = (props) => {
     Texte_mf,
     GingkoBiloba,
     dateFilter,
+    slug
   } = props
   // console.log('props => ', props)
   const { openModal } = useContext(microfictionsContext)
@@ -57,8 +58,9 @@ const Pin = (props) => {
             datadate={Date}
             datahour={Heure}
             datatext={Texte_mf}
+            dataslug={slug}
             onClick={(e, value = { GingkoBiloba }) => {
-              openModal(e, value)
+              openModal(e, value, slug)
             }}
           ></div>
         </TooltipTrigger>

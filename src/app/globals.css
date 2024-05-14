@@ -250,6 +250,10 @@ textarea {
 .pin:hover {
   scale: 3 !important;
 }
+[data-radix-popper-content-wrapper]{
+  z-index: 1000;
+  /* outline: 3px solid blue; */
+}
 main > *:not(section) {
   position: relative;
   z-index: 100;
@@ -305,8 +309,7 @@ main > *:not(section) {
 @media (min-width: 768px) {
   .slider-wrapper {
     /* right: calc((100vw - 768px) / 2 ); */
-    right:0;
-
+    right: 0;
   }
 }
 @media (min-width: 1024px) {

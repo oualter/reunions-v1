@@ -1,4 +1,9 @@
 import BlockRendererClient from './../components/BlockRendererClient'
+// import { metadata } from 'next'
+export const metadata = {
+  title: 'À propos',
+}
+
 const CMS_URL = process.env.CMS_URL
 const url = `${CMS_URL}/api/a-propos`
 
@@ -10,8 +15,8 @@ export default async function apropos() {
       const { Titre, Contenu } = body.data.attributes
 
       return (
-        <article className="generic-content lg:max-w-[700px] min-h-screen mx-auto my-6">
-          <h1 className="text-5xl mb-4">{Titre}</h1>
+        <article className="generic-content lg:max-w-[700px] min-h-screen mx-auto my-6 px-2 lg:px-0">
+          <h1 className="text-3xl lg:text-5xl mb-4">{Titre}</h1>
           <BlockRendererClient content={Contenu} />
         </article>
       )

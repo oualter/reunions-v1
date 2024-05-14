@@ -1,4 +1,9 @@
 import BlockRendererClient from './../components/BlockRendererClient'
+
+export const metadata = {
+  title: 'Le livre',
+}
+
 const CMS_URL = process.env.CMS_URL
 const url = `${CMS_URL}/api/le-livre?populate=*`
 
@@ -10,8 +15,8 @@ export default async function leLivre() {
       const { Titre, Contenu, contenu_2, Illustration } = body.data.attributes
 
       return (
-        <article className="generic-content lg:max-w-[700px] mx-auto my-6">
-          <h1 className="text-5xl mb-4">{Titre}</h1>
+        <article className="generic-content lg:max-w-[700px] mx-auto my-6 px-2 lg:px-0">
+          <h1 className="text-3xl lg:text-5xl mb-4">{Titre}</h1>
           <BlockRendererClient content={Contenu} />
           <br />
           <BlockRendererClient content={contenu_2} />

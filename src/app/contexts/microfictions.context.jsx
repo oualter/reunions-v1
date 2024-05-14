@@ -1,5 +1,6 @@
 'use client'
 import { createContext, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const MicrofictionsContext = createContext(null)
 
@@ -10,6 +11,8 @@ let counterforMF = 0
 const filteredMFArchive = []
 
 const MicrofictionsContextProvider = (props) => {
+  // console.log('context props => ', props)
+  const router = useRouter()
   let [isOpen, setIsOpen] = useState(false)
   let [modalAttr, setModalAttr] = useState('')
   let [GingkoBiloba, setGingkoBiloba] = useState(false)
@@ -24,13 +27,22 @@ const MicrofictionsContextProvider = (props) => {
     ? props.value.microfictionsFiltered
     : props.value.microfictions
 
-  const openModal = (e, value) => {
+  const openModal = (e, value, slug) => {
+    const customParamDate = e.target.attributes
+      .getNamedItem('datadate')
+      .value.replaceAll('/', '-')
+    if (slug) {
+      router.push(slug + '?microfiction-date=' + customParamDate)
+    }
     setModalAttr(e.target.attributes)
     setIsOpen(true)
     const tempConfetti = value.GingkoBiloba
     setIsShowConfettis(tempConfetti)
   }
-  const closeModal = () => {
+  const closeModal = (slug) => {
+    if (slug) {
+      router.push('/' + slug)
+    }
     setIsOpen(false)
     setIsShowConfettis(false)
   }

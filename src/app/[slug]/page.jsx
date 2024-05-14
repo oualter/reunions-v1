@@ -1,4 +1,3 @@
-'use server'
 import { MicrofictionsContextProvider } from '../contexts/microfictions.context'
 import ImagePlaceHolder from '../components/ImagePlaceHolder'
 import PinsList from '../components/PinsList'

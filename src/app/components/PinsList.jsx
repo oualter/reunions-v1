@@ -58,7 +58,7 @@ const PinsList = (props) => {
       ease: 'expo',
       delay: 0.2,
       stagger: {
-        each: 0.08,
+        each: 0.04,
       },
     })
     pinRemoveTL.to('.toRemove', {
@@ -72,14 +72,41 @@ const PinsList = (props) => {
 
   useEffect(() => {
     const pinDisplayTL = gsap.timeline()
+    // pinDisplayTL.to('.toDisplay', {
+    //   opacity: 1,
+    //   scale: 5,
+    //   duration: 0.2,
+    //   ease: 'expo',
+    //   delay: 0.1,
+    //   stagger: {
+    //     each: 0.08,
+    //   },
+    // })
+    pinDisplayTL.from('.toDisplay', {
+      opacity: 0,
+      scale: 0,
+      duration: 0.05,
+      ease: 'expo',
+      delay: 0.1,
+      // stagger: {
+      //   each: 0.08,
+      // },
+    })
+    // pinDisplayTL.to('.toDisplay', {
+    //   opacity: 1,
+    //   scale: 1,
+    //   duration: 0.2,
+    //   ease: 'expo',
+    //   delay: 0.6,
+    // })
     pinDisplayTL.to('.toDisplay', {
       opacity: 1,
       scale: 5,
-      duration: 0.2,
+      duration: 0.1,
       ease: 'expo',
       delay: 0.1,
       stagger: {
-        each: 0.08,
+        each: 0.03,
       },
     })
     pinDisplayTL.to('.toDisplay', {
@@ -87,7 +114,10 @@ const PinsList = (props) => {
       scale: 1,
       duration: 0.2,
       ease: 'expo',
-      delay: 0.6,
+      delay: 0.3,
+      stagger: {
+        each: 0.01,
+      },
     })
   }, [pins])
 

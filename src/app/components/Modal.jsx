@@ -37,10 +37,18 @@ const Modal = (props) => {
     .getNamedItem('datatext')
     .value.replaceAll(`\n`, `<br/>`)
 
+  const mfSlug = modalAttr.getNamedItem('dataslug')
+    ? modalAttr.getNamedItem('dataslug').value
+    : null
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment} className="z-1000">
-        <Dialog as="div" className="relative z-1000" onClose={closeModal}>
+        <Dialog
+          as="div"
+          className="relative z-1000"
+          onClose={() => closeModal(mfSlug)}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
