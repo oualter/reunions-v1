@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    // "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // "target": "es2022",
+    // "lib": ["dom", "dom.iterable", "esnext"],
+
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -41,7 +44,7 @@
     "src/app/le-livre/page.jsx",
     "src/app/providers.tsx",
     "src/app/components/ImagePlaceHolder.jsx",
-    "src/app/layout.jsx",
+    "src/app/layout.tsx",
     "src/app/page.jsx",
     "src/app/components/YearsSlider.jsx"
   ],

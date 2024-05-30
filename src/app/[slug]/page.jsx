@@ -6,15 +6,47 @@ import YearsSlider from '../components/YearsSlider'
 import Confettis from '../components/Confettis'
 import { GetMicroFictions } from '../../lib/microfictions'
 import { chapitres } from '../data'
+import { notFound } from 'next/navigation'
 
-export default async function showFictions(params) {
+export async function generateStaticParams() {
+  return [
+    { slug: 'janvier' },
+    { slug: 'fevrier' },
+    { slug: 'mars' },
+    { slug: 'avril' },
+    { slug: 'mai' },
+    { slug: 'juin' },
+    { slug: 'juillet' },
+    { slug: 'aout' },
+    { slug: 'septembre' },
+    { slug: 'octobre' },
+    { slug: 'novembre' },
+    { slug: 'decembre' },
+  ]
+}
+
+export default async function showFictions({ params }) {
   const microF = await GetMicroFictions(params)
 
-  const pageTitleObj = chapitres.filter((elt) => {
-    return elt.month === params.params.slug
+  const { slug } = params
+
+  const slugArray = await generateStaticParams()
+  const isSlugOK = slugArray.some((elt) => {
+    return elt.slug === slug
   })
-  const pageTitle = pageTitleObj[0].title
-  const currentSlug = params.params.slug
+
+  let pageTitle
+  if (isSlugOK) {
+    const pageTitleObj = chapitres.filter((elt) => {
+      return elt.month === slug
+    })
+    pageTitle = pageTitleObj[0].title
+  } else if (!isSlugOK) {
+    console.log('404')
+    notFound()
+  }
+
+  const currentSlug = slug
   const { microfictions } = microF
   // ajoute la propriété slug (avec le bon mois qui correspond) à l'objet en cours
   const microfictionsDateFixed = microfictions.map((elt) => {
@@ -62,7 +94,6 @@ export default async function showFictions(params) {
   const microfictionsFiltered = microfictionsDateFixed.filter((elt) => {
     return elt.slug == currentSlug
   })
-  // console.log('microfictionsFiltered => ', microfictionsFiltered)
 
   return (
     <MicrofictionsContextProvider value={{ microfictionsFiltered }}>

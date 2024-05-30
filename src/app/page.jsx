@@ -16,6 +16,8 @@ export default async function Home() {
   const microF = await GetMicroFictions()
   const { microfictions } = await microF
 
+  await new Promise((resolve) => setTimeout(resolve, 3000))
+
   return (
     <MicrofictionsContextProvider value={{ microfictions }}>
       <section className="map-page relative">
